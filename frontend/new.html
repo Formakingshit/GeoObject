@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Water_objects</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <link href="newstyle.css" rel="stylesheet">
+</head>
+<body>
+<div class="parent">
+    <form action class = "main_information" id="main_information">
+        <div class="form-inner">
+            <h3>Information</h3>
+            <label for="title">Title</label><input type="text" id="title" required>
+            <label for="latitude">Latitude</label><input type="text" id="latitude" required>
+            <label for="longitude">Longitude</label><input type="text" id="longitude" required>
+            <label for="district">District</label><input type="text" id="district">
+            <label for="code">Code</label><input type="text" id="code">
+            <label for="population">Population</label><input type="text" id="population">
+            <label for="square">Square</label><input type="text" id="square">
+            <label for="index">Square</label><input type="text" id="index"> 
+            <label for="country">Country</label>
+            <select id="country" form="main_information">
+                <option selected disabled>Choose country</option>
+                <option>Україна</option>
+                <option>Білорусь</option>
+                <option>Росія</option>
+                <option>Молдова</option>
+                <option>Польша</option>
+                <option>Болгарія</option>
+            </select>
+            <input type="submit" value="Add Settlement" onclick="axiosPostRiver()">
+        </div>
+    </form>
+   
+</div>
+
+  <script>
+        async function axiosPostRiver() {
+            await axios.post('http://127.0.0.1:3333/settlement', {
+                "title": document.getElementById("title").value,
+                "country":  document.getElementById("country").value,
+                "district":  document.getElementById("district").value,
+                "code":  document.getElementById("code").value,
+                "population":  document.getElementById("population").value,
+                "square": document.getElementById("square").value,
+                "index":  document.getElementById("index").value, 
+                "latitude": document.getElementById("latitude").value,
+                "longitude": document.getElementById("longitude").value
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
+    </script>
+
+</body>
+</html>
